@@ -25,6 +25,20 @@ export default {
       default: 'apple'
     }
   },
+  // 此时是正要跳转，但是页面还未渲染，因此此时无法使用this.来获取组件内容的
+  beforeRouteEnter (to, from, next) {
+    console.log(from.name)
+    // next中的vm就是组件的实例
+    next(vm => {
+      console.log(vm)
+    })
+  },
+  beforeRouteLeave (to,from, next) {
+    // 离开前要做的事情
+    const leave = confirm('您确定要离开吗？')
+    if (leave) next()
+    else next(false)
+  },
   methods: {
     handleClick (type) {
       // 获取路由实例,回退一页

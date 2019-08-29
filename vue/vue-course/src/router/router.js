@@ -12,6 +12,7 @@ export default [
       props: route => ({
         food: route.query.food
       }),
+
       // 路由独享守卫
       beforeEnter: (to, from, next) => {
         if (from.name === 'about') alert("这是从about页来的")
@@ -36,6 +37,10 @@ export default [
       component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
       props: {
         food: 'banana'
+      },
+      // 定义页面信息
+      meta: {
+        title: '关于'
       }
     },
     {
